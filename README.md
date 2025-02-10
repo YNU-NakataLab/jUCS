@@ -278,7 +278,7 @@ Fuzzy-UCS has the following hyperparameters:
 - $\theta_{\rm sub}$ (`theta_sub`): Experience threshold for subsumption
 - $\theta_{\rm exploit}$ (`theta_exploit`): Experience threshold for class inference
 - $\tau$ (`tau`): Tournament size
-- $P_\#$ (`P_hash`): Probability of *Don't Care* symbol in covering
+- $P_\\#$ (`P_hash`): Probability of *Don't Care* symbol in covering
 - $doCorrectSetSubsumption$ (`doCSSubsumption`): Whether correct set subsumption is performed
 - $doGASubsumption$ (`doGASubsumption`): Whether GA subsumption is performed
 
