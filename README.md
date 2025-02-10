@@ -213,7 +213,9 @@ These values are saved as `summary.csv`. An example of log output during the exp
 
 A $d$ -dimensional fuzzy-rule (a.k.a. fuzzy-classifier) $k$ is represented by the conjunctive normal form (CNF):
 
-${\rm \textbf{IF}} \; x_1 \; \text{is} \; A_1^k \; \text{and} \; \cdot\cdot\cdot\; \text{and} \; x_d \; \text{is} \; A_d^k \; {\rm \textbf{THEN}} \; c^k \; {\rm \textbf{WITH}} \; w^k$,
+```math
+{\rm \textbf{IF}} \; x_1 \; \text{is} \; A_1^k \; \text{and} \; \cdot\cdot\cdot\; \text{and} \; x_d \; \text{is} \; A_d^k \; {\rm \textbf{THEN}} \; c^k \; {\rm \textbf{WITH}} \; w^k,
+```
 
 where
 
