@@ -1,8 +1,5 @@
 # jUCS: the UCS learning classifier systems in Julia
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13968099.svg)](https://doi.org/10.5281/zenodo.13968099)
-
-
 The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article:
 
 >Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). https://doi.org/10.1145/3717613
