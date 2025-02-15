@@ -371,7 +371,7 @@ This file adds a list of required package dependencies to the project using the 
 #### `./dataset`
 This folder contains:
 - 30 datasets used in the main article
-- 7 additional datasets used in the supplementary material
+- 7 additional datasets used in the appendix
 
 ## Reproducing Article Results
 To reproduce the results from the article:
@@ -393,7 +393,7 @@ julia ./fuzzy-ucs/main.jl --all=true --inference=ds
 ``` 
 
 
-These codes will run experiments on the 30 datasets used in the main article and the 7 datasets used in the supplementary material, and output results.
+These codes will run experiments on the 30 datasets used in the main article and the 7 datasets used in the appendix, and output results.
 
 ## Copyright
 
