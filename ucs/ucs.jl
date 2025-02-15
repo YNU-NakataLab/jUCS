@@ -18,7 +18,7 @@ end
 
 "Main experiment loop for UCS"
 function run_experiment(self::UCS)
-    curr_state::Vector{Union{Float64, String}} = state(self.env)  # Get current state from environment
+    curr_state::Vector{Union{Float64, Int64, String}} = state(self.env)  # Get current state from environment
     curr_answer::Int64 = answer(self.env, curr_state)  # Get correct answer for current state
     match_set = generate_match_set(self, curr_state, curr_answer)  # Generate match set
     correct_set = generate_correct_set(match_set, curr_answer)  # Generate correct set
@@ -34,7 +34,7 @@ function run_experiment(self::UCS)
 end
 
 "Generate match set for given state and answer"
-function generate_match_set(self::UCS, state::Vector{Union{Float64, String}}, answer::Int64, do_exploit=false)::Vector{Classifier}
+function generate_match_set(self::UCS, state::Vector{Union{Float64, Int64, String}}, answer::Int64, do_exploit=false)::Vector{Classifier}
     match_set::Vector{Classifier} = []
     if !do_exploit
         # Find matching classifiers
@@ -70,7 +70,7 @@ function generate_correct_set(match_set::Vector{Classifier}, answer::Int64)::Vec
 end
 
 "Generate a covering classifier for a given state and answer"
-function generate_covering_classifier(self::UCS, state::Vector{Union{Float64, String}}, answer::Int64)::Classifier
+function generate_covering_classifier(self::UCS, state::Vector{Union{Float64, Int64, String}}, answer::Int64)::Classifier
     # Create a new classifier based on the current state
     clas::Classifier = Classifier(self.parameters, self.env, state)
     
@@ -91,7 +91,7 @@ function generate_covering_classifier(self::UCS, state::Vector{Union{Float64, St
 end
 
 "Generate a fitness sum array for the match set"
-function generate_fitness_sum_array(self::UCS, match_set::Vector{Classifier})::Vector{Union{Float64, String}}
+function generate_fitness_sum_array(self::UCS, match_set::Vector{Classifier})::Vector{Union{Float64, Int64, String}}
     # Initialize an array to hold fitness sums for each action
     FSA::Vector{Float64} = zeros(Float64, self.env.num_actions)
     

@@ -3,9 +3,9 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13968099.svg)](https://doi.org/10.5281/zenodo.13968099)
 
 
-The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the *ACM Transactions on Evolutionary Learning and Optimization* (TELO) article:
+The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article:
 
->Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. "**A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**." ACM Transactions on Evolutionary Learning and Optimization (2025).
+>Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). https://doi.org/10.1145/3717613
 
 In this article, we propose a novel class inference scheme for Learning Fuzzy-Classifier Systems (a.k.a. evolutionary fuzzy rule-based classification systems) based on the Dempster-Shafer Theory of Evidence. Our scheme enhances the handling of uncertainty in classification by calculating belief masses for each class and an *"I don't know"* state, then combining them to infer a class. When applied to the Fuzzy-UCS classifier system, our scheme improves classification performance on 30 real-world datasets compared to conventional voting- and single-winner-based class inference schemes.
 
@@ -399,18 +399,19 @@ These codes will run experiments on the 30 datasets used in the main article and
 
 The copyright of jUCS belongs to the authors in the [Evolutionary Intelligence Research Group](http://www.nkt.ynu.ac.jp/en/) (Nakata Lab) at Yokohama National University, Japan. You are free to use this code for research purposes. In such cases, we kindly request that you cite the following article:
 
->Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. "**A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**." ACM Transactions on Evolutionary Learning and Optimization (2025).
+>Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). https://doi.org/10.1145/3717613
 
 ```bibtex
 @article{shiraishi2025class,
-  title={A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems},
-  author={Shiraishi, Hiroki and Ishibuchi, Hisao and Nakata, Masaya},
-  journal={ACM Transactions on Evolutionary Learning and Optimization},
-  volume={},
-  number={},
-  pages={},
-  year={2025},
-  publisher={ACM New York, NY}
+author = {Shiraishi, Hiroki and Ishibuchi, Hisao and Nakata, Masaya},
+title = {A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems},
+year = {2025},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+doi = {10.1145/3717613},
+note = {Just Accepted},
+journal = {ACM Trans. Evol. Learn. Optim.},
+month = feb
 }
 ```
 
@@ -426,13 +427,13 @@ The copyright of jUCS belongs to the authors in the [Evolutionary Intelligence R
 [3] Christopher Stone and Larry Bull. "**For real! XCS with continuous-valued inputs**." Evolutionary Computation 11.3 (2003): 299-336. https://doi.org/10.1162/106365603322365315 [[↑]](#ref3)  
 
 <a id="4"></a>
-[4] Andras Bardossy, and Lucien Duckstein. **Fuzzy rule-based modeling with applications to geophysical, biological, and engineering systems**. CRC press, 1995. https://doi.org/10.1201/9780138755133 [[↑]](#ref4)  
+[4] Andras Bardossy and Lucien Duckstein. **Fuzzy rule-based modeling with applications to geophysical, biological, and engineering systems**. CRC press, 1995. https://doi.org/10.1201/9780138755133 [[↑]](#ref4)  
 
 <a id="5"></a>
 [5] Hisao Ishibuchi, Tomoharu Nakashima, and Tadahiko Murata. "**Performance evaluation of fuzzy classifier systems for multidimensional pattern classification problems**." IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics) 29.5 (1999): 601-618. https://doi.org/10.1109/3477.790443 [[↑]](#ref5)  
 
 <a id="6"></a>
-[6] Ryan J. Urbanowicz, and Will N. Browne. **Introduction to learning classifier systems**. Springer, 2017. https://books.google.co.jp/books?id=C6QxDwAAQBAJ [[↑]](#ref6) 
+[6] Ryan J. Urbanowicz and Will N. Browne. **Introduction to learning classifier systems**. Springer, 2017. https://books.google.co.jp/books?id=C6QxDwAAQBAJ [[↑]](#ref6) 
 
 <a id="7"></a> 
 [7] Manuel Valenzuela-Rendón. "**The fuzzy classifier system: Motivations and first results**." Parallel Problem Solving from Nature: 1st Workshop, PPSN I Dortmund, FRG, October 1–3, 1990 Proceedings 1. Springer Berlin Heidelberg, 1991. https://doi.org/10.1007/BFb0029774 [[↑]](#ref7)  

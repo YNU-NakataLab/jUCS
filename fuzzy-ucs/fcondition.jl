@@ -13,7 +13,7 @@ function CNF(vs, s, m, l, vl)
 end
 
 "Calculate the membership value for a given input"
-function get_membership_value(self::CNF, x::Union{Float64, String})::Float64
+function get_membership_value(self::CNF, x::Union{Float64, Int64, String})::Float64
     vs, s, m, l, vl = self.vs, self.s, self.m, self.l, self.vl
 
     # If input is "?", return full membership

@@ -19,7 +19,7 @@ end
 "Main experiment loop for Fuzzy-UCS"
 function run_experiment(self::FUCS)
     # Get current state and correct answer from environment
-    curr_state::Vector{Union{Float64, String}} = state(self.env)
+    curr_state::Vector{Union{Float64, Int64, String}} = state(self.env)
     curr_answer::Int64 = answer(self.env, curr_state)
     
     # Generate match set based on current state
@@ -126,7 +126,7 @@ function set_mass(experienced_match_set::Vector{FClassifier})
 end
 
 "Generate the match set for a given state and answer"
-function generate_match_set(self::FUCS, state::Vector{Union{Float64, String}}, answer::Int64, do_exploit=false)::Vector{FClassifier}
+function generate_match_set(self::FUCS, state::Vector{Union{Float64, Int64, String}}, answer::Int64, do_exploit=false)::Vector{FClassifier}
     # Calculate matching degrees for all classifiers
     set_matching_degree(self, state)
     
@@ -152,14 +152,14 @@ function generate_match_set(self::FUCS, state::Vector{Union{Float64, String}}, a
 end
 
 "Set the matching degree for all classifiers in the population"
-function set_matching_degree(self::FUCS, state::Vector{Union{Float64, String}})
+function set_matching_degree(self::FUCS, state::Vector{Union{Float64, Int64, String}})
     @simd for clas in self.population
         clas.matching_degree = get_matching_degree(clas, state)
     end
 end
 
 "Calculate the matching degree of a classifier for a given state"
-function get_matching_degree(clas::FClassifier, state::Vector{Union{Float64, String}})::Float64
+function get_matching_degree(clas::FClassifier, state::Vector{Union{Float64, Int64, String}})::Float64
     matching_degree::Float64 = 1.0
     @simd for i in 1:length(state)
         # Multiply membership values for each attribute
@@ -192,7 +192,7 @@ function do_covering(self::FUCS, match_set::Vector{FClassifier}, answer::Int64):
 end
 
 "Generate a covering classifier for the current state and answer"
-function generate_covering_classifier(self::FUCS, state::Vector{Union{Float64, String}}, answer::Int64)::FClassifier
+function generate_covering_classifier(self::FUCS, state::Vector{Union{Float64, Int64, String}}, answer::Int64)::FClassifier
     # Create a new fuzzy classifier
     clas::FClassifier = FClassifier(self.parameters, self.env, state)
     # Set the weight for the correct action to 1

@@ -186,9 +186,9 @@ function output_full_score_for_csv(current_epoch::Int64, num_epoch::Int64, env::
 end
 
 "Get Accuracy, Precision, Recall, and F1"
-function get_scores_per_epoch(seed::Int64, fucs::FUCS, data::Array{Union{Float64, Int64, String}, 2}, changed_data::Array{Union{Float64, String}, 2}, inference::String)::Tuple{Float64, Float64, Float64, Float64}
+function get_scores_per_epoch(seed::Int64, fucs::FUCS, data::Array{Union{Float64, Int64, String}, 2}, inference::String)::Tuple{Float64, Float64, Float64, Float64}
     true_labels::Vector{Int64} = [Int64(data[row_index, size(data, 2)]) for row_index in 1:size(data, 1)]
-    predicted_labels::Vector{Int64} = [class_inference(seed, fucs, changed_data[row_index, 1:size(changed_data, 2)], inference) for row_index in 1:size(changed_data, 1)]
+    predicted_labels::Vector{Int64} = [class_inference(seed, fucs, data[row_index, 1:(size(data, 2)-1)], inference) for row_index in 1:size(data, 1)]
 
     # Determine the common levels
     all_levels = unique([true_labels; predicted_labels])
@@ -197,7 +197,7 @@ function get_scores_per_epoch(seed::Int64, fucs::FUCS, data::Array{Union{Float64
     cat_predicted_labels = categorical(predicted_labels, levels=all_levels, ordered=true)
    
     # Step 1: Calculate confusion matrix
-    cm = confusion_matrix(cat_true_labels, cat_predicted_labels)
+    cm = confusion_matrix(cat_predicted_labels, cat_true_labels)
 
     # Step 2: Calculate precision, recall, and F1 for each class
     precision_per_class = Dict{Int64, Float64}()
@@ -223,21 +223,21 @@ function get_scores_per_epoch(seed::Int64, fucs::FUCS, data::Array{Union{Float64
         f1_per_class[c] = isnan(f1) ? 0 : f1
     end
 
-    # Step 3: Calculate Macro Accuracy, Precision, Recall, and F1
-    macro_accuracy = accuracy(true_labels, predicted_labels) * 100
+    # Step 3: Calculate Accuracy, Precision, Recall, and F1
+    overall_accuracy = accuracy(true_labels, predicted_labels) * 100
     macro_precision = mean(values(precision_per_class)) * 100
     macro_recall = mean(values(recall_per_class)) * 100
     macro_f1 = mean(values(f1_per_class)) * 100
 
-    return macro_accuracy, macro_precision, macro_recall, macro_f1
+    return overall_accuracy, macro_precision, macro_recall, macro_f1
 end
 
-function get_idk_per_epoch(fucs::FUCS, data::Array{Union{Float64, Int64, String}, 2}, changed_data::Array{Union{Float64, String}, 2})::Float64
-    idk_array::Vector{Float64} = [calculate_idk(fucs, changed_data[row_index, 1:size(changed_data, 2)]) for row_index in 1:size(changed_data, 1)]
+function get_idk_per_epoch(fucs::FUCS, data::Array{Union{Float64, Int64, String}, 2})::Float64
+    idk_array::Vector{Float64} = [calculate_idk(fucs, data[row_index, 1:(size(data, 2)-1)]) for row_index in 1:size(data, 1)]
     return mean(idk_array)
 end
 
-function calculate_idk(fucs::FUCS, state::Vector{Union{Float64, String}})::Float64
+function calculate_idk(fucs::FUCS, state::Vector{Union{Float64, Int64, String}})::Float64
     match_set::Vector{FClassifier} = @views generate_match_set(fucs, state, -1, true)
     css = @views generate_conjunctive_sum_set(fucs, match_set)
     if css[end-1] != 1
@@ -305,9 +305,9 @@ function conjunctive_masses(mass_all::Vector{Float64}, mass_clas::Vector{Float64
 end
 
 # {Float64, Int64, String} -> {Float64, String}
-function change_array_type(original_array::Array{Union{Float64, Int64, String}, 2})::Array{Union{Float64, String}, 2}
+function change_array_type(original_array::Array{Union{Float64, Int64, String}, 2})::Array{Union{Float64, Int64, String}, 2}
     original_array = original_array[:, 1:end-1]
-    converted_array = Array{Union{Float64, String}, 2}(undef, size(original_array))
+    converted_array = Array{Union{Float64, Int64, String}, 2}(undef, size(original_array))
 
     for i in 1:size(original_array, 1)
         for j in 1:size(original_array, 2)
@@ -324,7 +324,7 @@ function change_array_type(original_array::Array{Union{Float64, Int64, String}, 
     return converted_array
 end
 
-function class_inference(seed::Int64, fucs::FUCS, state::Vector{Union{Float64, String}}, inference::String)
+function class_inference(seed::Int64, fucs::FUCS, state::Vector{Union{Float64, Int64, String}}, inference::String)
     match_set::Vector{FClassifier} = @views generate_match_set(fucs, state, -1, true)
 
     if inference == "vote"

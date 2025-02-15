@@ -5,7 +5,7 @@ using DataFrames
 using Dates
 
 function parse_commandline()
-    s = ArgParseSettings(description="Fuzzy-UCS Classifier System")
+    s = ArgParseSettings(description="The Fuzzy-UCS classifier system")
     @add_arg_table s begin
         "--num_trials"
             help = "The number of trials"
@@ -156,11 +156,11 @@ function main_csv(args; now_str=Dates.format(Dates.now(), "Y-m-d-H-M-S"))
 
             # Test Phase
             env.is_exploit = true
-            train_accuracy::Float64, train_precision::Float64, train_recall::Float64, train_f1::Float64 = get_scores_per_epoch(env.seed, fucs, env.train_data, change_array_type(env.train_data), args["inference"])
-            test_accuracy::Float64, test_precision::Float64, test_recall::Float64, test_f1::Float64 = get_scores_per_epoch(env.seed, fucs, env.test_data, change_array_type(env.test_data), args["inference"])
+            train_accuracy::Float64, train_precision::Float64, train_recall::Float64, train_f1::Float64 = get_scores_per_epoch(env.seed, fucs, env.train_data, args["inference"])
+            test_accuracy::Float64, test_precision::Float64, test_recall::Float64, test_f1::Float64 = get_scores_per_epoch(env.seed, fucs, env.test_data, args["inference"])
             if args["inference"] == "ds" && args["idk"]
-                train_idk::Float64 = get_idk_per_epoch(fucs, env.train_data, change_array_type(env.train_data))
-                test_idk::Float64 = get_idk_per_epoch(fucs, env.test_data, change_array_type(env.test_data))
+                train_idk::Float64 = get_idk_per_epoch(fucs, env.train_data)
+                test_idk::Float64 = get_idk_per_epoch(fucs, env.test_data)
                 train_idk_list[e] = train_idk
                 test_idk_list[e] = test_idk
             end

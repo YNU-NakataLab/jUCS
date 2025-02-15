@@ -110,7 +110,7 @@ function shuffle_train_and_test_data!(self::Environment)
 
 end
 
-function state(self::Environment)::Vector{Union{Float64, String}}
+function state(self::Environment)::Vector{Union{Float64, Int64, String}}
     if self.is_exploit == false
         # Use train data
         shuffle_index_array_and_reset_row_index!(self)
@@ -121,7 +121,7 @@ function state(self::Environment)::Vector{Union{Float64, String}}
     end
 end
 
-function answer(self::Environment, state::Vector{Union{Float64, String}})::Int64
+function answer(self::Environment, state::Vector{Union{Float64, Int64, String}})::Int64
     if self.is_exploit == false
         # Use train data
         return Int64(self.train_data[self.index_array[self.row_index], size(self.train_data, 2)])

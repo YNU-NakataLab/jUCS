@@ -41,7 +41,7 @@ function Classifier(parameters, env, state)
 end
 
 "Check if a classifier's condition matches a given state"
-function does_match(condition::Vector{UBR}, state::Vector{Union{Float64, String}})::Bool
+function does_match(condition::Vector{UBR}, state::Vector{Union{Float64, Int64, String}})::Bool
     for i in 1:length(state)
         if state[i] == "?"
             continue

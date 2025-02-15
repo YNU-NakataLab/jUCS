@@ -1,7 +1,7 @@
 using ArgParse, Random, CSV, DataFrames, Dates
 
 function parse_commandline()
-    s = ArgParseSettings(description="UCS Classifier System")
+    s = ArgParseSettings(description="The UCS classifier system")
     @add_arg_table s begin
         "--num_trials"
             help = "The number of trials"
@@ -150,8 +150,8 @@ function main_csv(args; now_str=Dates.format(Dates.now(), "Y-m-d-H-M-S"))
 
             # Test Phase
             env.is_exploit = true
-            train_accuracy::Float64, train_precision::Float64, train_recall::Float64, train_f1::Float64 = get_scores_per_epoch(env.seed, ucs, env.train_data, change_array_type(env.train_data))
-            test_accuracy::Float64, test_precision::Float64, test_recall::Float64, test_f1::Float64 = get_scores_per_epoch(env.seed, ucs, env.test_data, change_array_type(env.test_data))
+            train_accuracy::Float64, train_precision::Float64, train_recall::Float64, train_f1::Float64 = get_scores_per_epoch(env.seed, ucs, env.train_data)
+            test_accuracy::Float64, test_precision::Float64, test_recall::Float64, test_f1::Float64 = get_scores_per_epoch(env.seed, ucs, env.test_data)
             popsize::Int64 = length(ucs.population)
 
             # Output log
@@ -213,7 +213,7 @@ function main_all_csv(args)
         "wpbc",
         "yeast",
 
-        # 7 datasets used in the supplementary material
+        # 7 datasets used in the appendix
         "12carry",
         "11mop",
         "11mux",
