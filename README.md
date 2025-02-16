@@ -1,4 +1,5 @@
 # jUCS: the UCS learning classifier systems in Julia
+[![DOI](https://zenodo.org/badge/930210146.svg)](https://doi.org/10.5281/zenodo.14877438)
 
 The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article:
 
