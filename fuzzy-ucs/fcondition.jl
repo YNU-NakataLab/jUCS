@@ -123,22 +123,3 @@ function is_equal(self::CNF, other::CNF)::Bool
         return false
     end
 end
-
-
-# for i in 1:100
-#     x = 0.01*i
-#     for a in (true, false)
-#         for b in (true, false)
-#             for c in (true, false)
-#                 for d in (true, false)
-#                     for e in (true, false)
-#                         print("2")
-#                         if get_membership_value(CNF(a,b,c,d,e), x) != get_membership_value_modify(CNF(a,b,c,d,e), x)
-#                             print("error")
-#                         end
-#                     end
-#                 end
-#             end
-#         end
-#     end
-# end
