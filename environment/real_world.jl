@@ -24,7 +24,7 @@ function Environment(args)::Environment
 end
 
 function get_train_and_test_data_and_all_data(filename::String)::Tuple{Array{Union{Float64, Int64, String}, 2}, Array{Union{Float64, Int64, String}, 2}, Array{Union{Float64, Int64, String}, 2}}
-    all_data = CSV.File(filename; stringtype=String, header=false) |> DataFrame
+    all_data = CSV.File(filename; header=false) |> DataFrame
     all_data = Matrix(all_data)
 
     train_data_ratio::Float64 = 0.9 # Shuffle-Split Cross Validation (Training:Testing = 9:1)
