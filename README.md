@@ -111,7 +111,7 @@ The Dempster-Shafer theory allows for representation of both uncertainty and imp
 
 ## Setup and Usage Guide
 ### Requirements
-* Julia v1.10.5 LTS or higher (download [here](https://julialang.org/downloads/#official_binaries_for_manual_download))
+* Julia v1.11.1 or higher (download [here](https://julialang.org/downloads/#official_binaries_for_manual_download))
 * Packages: ArgParse,
     CategoricalArrays,
     CSV,
