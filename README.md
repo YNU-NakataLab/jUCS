@@ -1,4 +1,4 @@
-# jUCS: the UCS learning classifier systems in Julia
+# jUCS: the UCS learning classifier systems in Julia <!-- omit in toc -->
 [![DOI](https://zenodo.org/badge/930210146.svg)](https://doi.org/10.5281/zenodo.14877438)
 
 The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article:
@@ -7,49 +7,13 @@ The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and F
 
 In this article, we propose a novel class inference scheme for Learning Fuzzy-Classifier Systems (a.k.a. evolutionary fuzzy rule-based classification systems) based on the Dempster-Shafer Theory of Evidence. Our scheme enhances the handling of uncertainty in classification by calculating belief masses for each class and an *"I don't know"* state, then combining them to infer a class. When applied to the Fuzzy-UCS classifier system, our scheme improves classification performance on 30 real-world datasets compared to conventional voting- and single-winner-based class inference schemes.
 
-## Table of Contents
-- [jUCS: the UCS learning classifier systems in Julia](#jucs-the-ucs-learning-classifier-systems-in-julia)
-  - [Table of Contents](#table-of-contents)
-  - [Overview of jUCS](#overview-of-jucs)
-  - [Background: UCS, Fuzzy-UCS, and Theoretical Foundations](#background-ucs-fuzzy-ucs-and-theoretical-foundations)
-    - [What are UCS and Fuzzy-UCS?](#what-are-ucs-and-fuzzy-ucs)
-    - [Brief Algorithm of Fuzzy-UCS](#brief-algorithm-of-fuzzy-ucs)
-    - [Class Inference Schemes for Fuzzy-UCS](#class-inference-schemes-for-fuzzy-ucs)
-      - [Voting-based inference (Fuzzy-UCSVOTE)](#voting-based-inference-fuzzy-ucsvote)
-      - [Single-winner-based inference (Fuzzy-UCSSWIN)](#single-winner-based-inference-fuzzy-ucsswin)
-      - [Dempster-Shafer theory-based inference (Fuzzy-UCSDS)](#dempster-shafer-theory-based-inference-fuzzy-ucsds)
-    - [Dempster-Shafer Theory in a Nutshell](#dempster-shafer-theory-in-a-nutshell)
-  - [Setup and Usage Guide](#setup-and-usage-guide)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-    - [Usage](#usage)
-      - [Run UCS](#run-ucs)
-      - [Run Fuzzy-UCSVOTE](#run-fuzzy-ucsvote)
-      - [Run Fuzzy-UCSSWIN](#run-fuzzy-ucsswin)
-      - [Run Fuzzy-UCSDS](#run-fuzzy-ucsds)
-      - [For Further Details](#for-further-details)
-    - [Output Examples](#output-examples)
-      - [`summary.csv`](#summarycsv)
-      - [`classifier.csv` (Fuzzy-UCS)](#classifiercsv-fuzzy-ucs)
-      - [`parameters.csv` (Fuzzy-UCS)](#parameterscsv-fuzzy-ucs)
-      - [`time.csv`](#timecsv)
-    - [Description of the jUCS Files](#description-of-the-jucs-files)
-      - [`./ucs/ucs.jl` and `./fuzzy-ucs/fucs.jl`](#ucsucsjl-and-fuzzy-ucsfucsjl)
-      - [`./ucs/classifier.jl` and `./fuzzy-ucs/fclassifier.jl`](#ucsclassifierjl-and-fuzzy-ucsfclassifierjl)
-      - [`./ucs/condition.jl` and `./fuzzy-ucs/fcondition.jl`](#ucsconditionjl-and-fuzzy-ucsfconditionjl)
-      - [`./ucs/parameters.jl` and `./fuzzy-ucs/fparameters.jl`](#ucsparametersjl-and-fuzzy-ucsfparametersjl)
-      - [`./ucs/helper.jl` and `./fuzzy-ucs/fhelper.jl`](#ucshelperjl-and-fuzzy-ucsfhelperjl)
-      - [`./ucs/main.jl` and `./fuzzy-ucs/main.jl`](#ucsmainjl-and-fuzzy-ucsmainjl)
-      - [`./environment/real_world.jl`](#environmentreal_worldjl)
-      - [`./packages.jl`](#packagesjl)
-      - [`./dataset`](#dataset)
-  - [Reproducing Article Results](#reproducing-article-results)
-      - [Run UCS](#run-ucs-1)
-      - [Run Fuzzy-UCSVOTE](#run-fuzzy-ucsvote-1)
-      - [Run Fuzzy-UCSSWIN](#run-fuzzy-ucsswin-1)
-      - [Run Fuzzy-UCSDS](#run-fuzzy-ucsds-1)
-  - [Copyright](#copyright)
-  - [References](#references)
+## Table of Contents <!-- omit in toc -->
+- [Overview of jUCS](#overview-of-jucs)
+- [Background: UCS, Fuzzy-UCS, and Theoretical Foundations](#background-ucs-fuzzy-ucs-and-theoretical-foundations)
+- [Setup and Usage Guide](#setup-and-usage-guide)
+- [Reproducing Article Results](#reproducing-article-results)
+- [Copyright](#copyright)
+- [References](#references)
 
 ## Overview of jUCS
 jUCS implements:
@@ -62,14 +26,14 @@ jUCS implements:
 It allows running experiments on classification datasets to compare the performance of these systems.
 
 ## Background: UCS, Fuzzy-UCS, and Theoretical Foundations
-### What are UCS and Fuzzy-UCS?
-UCS and Fuzzy-UCS are both types of [Learning Classifier Systems](https://en.wikipedia.org/wiki/Learning_classifier_system) (LCSs) <sup><a id="ref6"></a>[[6]](#6)</sup> designed for classification tasks.
+### What are UCS and Fuzzy-UCS? <!-- omit in toc -->
+UCS and Fuzzy-UCS are both types of [Learning Classifier Systems](https://en.wikipedia.org/wiki/Learning_classifier_system) (LCSs) <sup><a id="ref6"></a>[[6]](#6)</sup>, a family of evolutionary rule-based machine learning algorithms.
 
-UCS (sUpervised Classifier System) is a Michigan-style LCS specifically designed for supervised learning tasks. It evolves a population of rules using an evolutionary algorithm and evaluates their accuracy online. UCS learns from a training dataset or incrementally from a stream of examples, adjusting rule quality estimates and applying a genetic algorithm to create new promising rules.
+UCS (sUpervised Classifier System) is a Michigan-style LCS specifically designed for classification tasks. It evolves a population of rules using an evolutionary algorithm and evaluates their accuracy online. UCS learns from a training dataset or incrementally from a stream of examples, adjusting rule quality estimates and applying a genetic algorithm to create new promising rules.
 
 Fuzzy-UCS (sUpervised Fuzzy-Classifier System) is a Michigan-style Learning Fuzzy-Classifier System (LFCS) <sup><a id="ref1"></a>[[7]](#7)</sup>, an extension of UCS that introduces a linguistic fuzzy representation of rules to improve interpretability while maintaining similar performance and generalization capabilities. It replaces the interval-based representation of UCS with linguistic fuzzy rules, where each input variable is represented by a disjunction of linguistic terms. Fuzzy-UCS aims to evolve a set of maximally general and accurate fuzzy rules that cover the entire input space.
 
-### Brief Algorithm of Fuzzy-UCS
+### Brief Algorithm of Fuzzy-UCS <!-- omit in toc -->
 
 <img src="fig/fuzzyucs.png" width="600">
 
@@ -77,19 +41,19 @@ A schematic illustration of Fuzzy-UCS is shown above. The run cycle depends on t
 
 
 
-### Class Inference Schemes for Fuzzy-UCS
-#### Voting-based inference (Fuzzy-UCS<sub>VOTE</sub>)
-  - Introduced by Bardossy and Duckstein in 1995
+### Class Inference Schemes for Fuzzy-UCS <!-- omit in toc -->
+#### Voting-based inference (Fuzzy-UCS<sub>VOTE</sub>) <!-- omit in toc -->
+  - Introduced by Bardossy and Duckstein in 1995 
   - Aggregates votes from multiple rules
   - Each rule's vote is weighted by its membership degree, fitness, and numerosity
   - The class with the highest total vote is selected
 
-#### Single-winner-based inference (Fuzzy-UCS<sub>SWIN</sub>)
+#### Single-winner-based inference (Fuzzy-UCS<sub>SWIN</sub>) <!-- omit in toc -->
   - Introduced by Ishibuchi et al. in 1999
   - Selects the single rule with the highest product of membership degree and fitness
   - The class predicted by this winning rule is selected
 
-#### Dempster-Shafer theory-based inference (Fuzzy-UCS<sub>DS</sub>)
+#### Dempster-Shafer theory-based inference (Fuzzy-UCS<sub>DS</sub>) <!-- omit in toc -->
 An example of how the scheme works on a binary classification problem is shown below.
 
 <img src="fig/ds-decision-making.png" width="600">
@@ -100,7 +64,7 @@ An example of how the scheme works on a binary classification problem is shown b
   - Applies pignistic transformation to obtain final class probabilities
   - The class with the highest pignistic probability is selected
 
-### Dempster-Shafer Theory in a Nutshell
+### Dempster-Shafer Theory in a Nutshell <!-- omit in toc -->
 The Dempster-Shafer theory was introduced by Shafer <sup><a id="ref8"></a>[[8]](#8)</sup> as a reformation of Dempster's earlier work <sup><a id="ref9"></a>[[9]](#9)</sup>. It offers a mathematical and robust framework for reasoning with uncertainty. Key concepts include:
 * Frame of Discernment: A set of mutually exclusive and exhaustive hypotheses
 * Belief Mass Function: Assigns degrees of belief to subsets of the frame of discernment
@@ -110,7 +74,7 @@ The Dempster-Shafer theory was introduced by Shafer <sup><a id="ref8"></a>[[8]](
 The Dempster-Shafer theory allows for representation of both uncertainty and imprecision, making it suitable for complex classification tasks.
 
 ## Setup and Usage Guide
-### Requirements
+### Requirements <!-- omit in toc -->
 * Julia v1.11.1 or higher (download [here](https://julialang.org/downloads/#official_binaries_for_manual_download))
 * Packages: ArgParse,
     CategoricalArrays,
@@ -119,13 +83,13 @@ The Dempster-Shafer theory allows for representation of both uncertainty and imp
     MLJ,
     Suppressor
 
-### Installation
+### Installation <!-- omit in toc -->
 Once Julia is installed, you can install the required Julia packages with the following command via the command line interface.
 ```bash
 julia packages.jl
 ```
 
-### Usage
+### Usage <!-- omit in toc -->
 You can train a UCS/Fuzzy-UCS model using any tabular dataset (e.g., yourfile.csv) for classification via the command line interface. Note that:
 - The rightmost column of the CSV file must represent the class label, while all other columns should constitute the input features.
 - Class labels must be integers starting from 0 (e.g., 0, 1, 2) for proper processing.
@@ -135,24 +99,24 @@ You can train a UCS/Fuzzy-UCS model using any tabular dataset (e.g., yourfile.cs
 
 Here are examples of how to run the models:
 
-#### Run UCS
+#### Run UCS <!-- omit in toc -->
 ```bash
 julia ./ucs/main.jl --csv=yourfile.csv
 ```
-#### Run Fuzzy-UCS<sub>VOTE</sub>
+#### Run Fuzzy-UCS<sub>VOTE</sub> <!-- omit in toc -->
 ```bash
 julia ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=vote
 ```
-#### Run Fuzzy-UCS<sub>SWIN</sub>
+#### Run Fuzzy-UCS<sub>SWIN</sub> <!-- omit in toc -->
 ```bash
 julia ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=swin
 ```
-#### Run Fuzzy-UCS<sub>DS</sub>
+#### Run Fuzzy-UCS<sub>DS</sub> <!-- omit in toc -->
 ```bash
 julia ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=ds
 ```
 
-#### For Further Details
+#### For Further Details <!-- omit in toc -->
 ```bash
 julia ./ucs/main.jl --help
 ``` 
@@ -161,14 +125,14 @@ julia ./fuzzy-ucs/main.jl --help
 ```
 
 
-### Output Examples
+### Output Examples <!-- omit in toc -->
 Upon completion of the experiment, jUCS generates the following files: 
 - [`summary.csv `](#summarycsv)
 - [`classifier.csv`](#classifiercsv-fuzzy-ucs)
 - [`parameters.csv`](#parameterscsv-fuzzy-ucs)
 - [`time.csv`](#timecsv)
 
-#### `summary.csv`
+#### `summary.csv` <!-- omit in toc -->
 jUCS tracks the following features every epoch:
 
 * Iteration (`Iteration`): The number of training instances used up to the epoch
@@ -211,7 +175,7 @@ These values are saved as `summary.csv`. An example of log output during the exp
           20       108000       87.944       88.333       87.965       88.711       87.928       88.493       87.915       88.431         1416          0.0          269 
 ```
 
-#### `classifier.csv` (Fuzzy-UCS)
+#### `classifier.csv` (Fuzzy-UCS) <!-- omit in toc -->
 
 A $d$ -dimensional fuzzy-rule (a.k.a. fuzzy-classifier) $k$ is represented by the conjunctive normal form (CNF):
 
@@ -267,7 +231,7 @@ The acquired population is saved as `classifier.csv` as shown below.
 
 
 
-#### `parameters.csv` (Fuzzy-UCS)
+#### `parameters.csv` (Fuzzy-UCS) <!-- omit in toc -->
 Fuzzy-UCS has the following hyperparameters:
 - $N$ (`N`): Maximum population size
 - $F_0$ (`F0`): Fitness threshold
@@ -305,14 +269,14 @@ The used hyperparameter values are saved as `parameters.csv` as shown below.
 
 
 
-#### `time.csv`
+#### `time.csv` <!-- omit in toc -->
 The runtime (sec.) is saved as `time.csv` as shown below.
 ```
 65.804
 ```
 
-### Description of the jUCS Files
-#### `./ucs/ucs.jl` and `./fuzzy-ucs/fucs.jl`
+### Description of the jUCS Files <!-- omit in toc -->
+#### `./ucs/ucs.jl` and `./fuzzy-ucs/fucs.jl` <!-- omit in toc -->
 These files implement the core components of the UCS and Fuzzy-UCS algorithms, respectively. They include:
 - The main UCS/Fuzzy-UCS structure
 - Functions for generating match and correct sets
@@ -320,14 +284,14 @@ These files implement the core components of the UCS and Fuzzy-UCS algorithms, r
 - Procedures for running the genetic algorithm
 - Routines for handling population management
 
-#### `./ucs/classifier.jl` and `./fuzzy-ucs/fclassifier.jl`
+#### `./ucs/classifier.jl` and `./fuzzy-ucs/fclassifier.jl` <!-- omit in toc -->
 These files define the Classifier/FClassifier struct and associated methods for UCS/Fuzzy-UCS. They include:
 -  Constructor for creating new Classifiers/FClassifiers
 -  Methods for matching Classifiers/FClassifiers to input states
 -  Functions for modifying Classifiers/FClassifiers through crossover and mutation
 -  Comparison operations to check generality and equality between Classifiers/FClassifiers
   
-#### `./ucs/condition.jl` and `./fuzzy-ucs/fcondition.jl`
+#### `./ucs/condition.jl` and `./fuzzy-ucs/fcondition.jl` <!-- omit in toc -->
 These files implement the Unordered-Bound Representation (UBR) / the Conjunctive Normal Form (CNF) for classifier conditions in UCS and Fuzzy-UCS, respectively. They include:
 * A struct definition for UBR/CNF objects
 * Functions for
@@ -336,13 +300,13 @@ These files implement the Unordered-Bound Representation (UBR) / the Conjunctive
 * Methods for comparing equality between UBR/CNF objects
 * Initialization functions for creating new UBR/CNF objects
 
-#### `./ucs/parameters.jl` and `./fuzzy-ucs/fparameters.jl`
+#### `./ucs/parameters.jl` and `./fuzzy-ucs/fparameters.jl` <!-- omit in toc -->
 These files define the hyperparameters for UCS and Fuzzy-UCS, respectively. They include:
 -  A mutable struct called Parameters that encapsulates all hyperparameters for the algorithm
 -  A constructor function to initialize the Parameters struct from command-line arguments
 -  Definitions for key algorithm parameters such as population size, mutation probability, and various thresholds
 
-#### `./ucs/helper.jl` and `./fuzzy-ucs/fhelper.jl`
+#### `./ucs/helper.jl` and `./fuzzy-ucs/fhelper.jl` <!-- omit in toc -->
 These files implement helper functions for UCS and Fuzzy-UCS, respectively. They include:
 -  Methods for data output and management
 -  Functions for generating classifier lists
@@ -350,42 +314,42 @@ These files implement helper functions for UCS and Fuzzy-UCS, respectively. They
 -  Various performance evaluation functions
 -  Inference functions for classification tasks
 
-#### `./ucs/main.jl` and `./fuzzy-ucs/main.jl`
+#### `./ucs/main.jl` and `./fuzzy-ucs/main.jl` <!-- omit in toc -->
 These files implement the main execution logic for the UCS and Fuzzy-UCS algorithms, respectively. They include:
 -  Command-line argument parsing for experiment configuration
 -  Setup for single or multiple dataset experiments
 -  Implementation of training and testing phases
 -  Result output and data logging functionality
 
-#### `./environment/real_world.jl`
+#### `./environment/real_world.jl` <!-- omit in toc -->
 This file implements an Environment struct and associated functions for handling real-world classification problems. It includes:
 * Functions for loading and preprocessing data from CSV files
 * Methods for data normalization and shuffling
 * Helper functions for managing dataset properties and statistics
 
-#### `./packages.jl`
+#### `./packages.jl` <!-- omit in toc -->
 This file adds a list of required package dependencies to the project using the Pkg module.
 
-#### `./dataset`
+#### `./dataset` <!-- omit in toc -->
 This folder contains:
 - 30 datasets used in the main article
 - 7 additional datasets used in the appendix
 
 ## Reproducing Article Results
 To reproduce the results from the article:
-#### Run UCS
+#### Run UCS <!-- omit in toc -->
 ```bash
 julia ./ucs/main.jl --all=true
 ```
-#### Run Fuzzy-UCS<sub>VOTE</sub>
+#### Run Fuzzy-UCS<sub>VOTE</sub> <!-- omit in toc -->
 ```bash
 julia ./fuzzy-ucs/main.jl --all=true --inference=vote 
 ```
-#### Run Fuzzy-UCS<sub>SWIN</sub>
+#### Run Fuzzy-UCS<sub>SWIN</sub> <!-- omit in toc -->
 ```bash
 julia ./fuzzy-ucs/main.jl --all=true --inference=swin 
 ```
-#### Run Fuzzy-UCS<sub>DS</sub>
+#### Run Fuzzy-UCS<sub>DS</sub> <!-- omit in toc -->
 ```bash
 julia ./fuzzy-ucs/main.jl --all=true --inference=ds 
 ``` 
