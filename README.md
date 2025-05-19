@@ -66,10 +66,10 @@ An example of how the scheme works on a binary classification problem is shown b
 
 ### Dempster-Shafer Theory in a Nutshell <!-- omit in toc -->
 The Dempster-Shafer theory was introduced by Shafer <sup><a id="ref8"></a>[[8]](#8)</sup> as a reformation of Dempster's earlier work <sup><a id="ref9"></a>[[9]](#9)</sup>. It offers a mathematical and robust framework for reasoning with uncertainty. Key concepts include:
-* Frame of Discernment: A set of mutually exclusive and exhaustive hypotheses
-* Belief Mass Function: Assigns degrees of belief to subsets of the frame of discernment
-* Dempster's Rule of Combination: Combines evidence from multiple sources
-* Pignistic Transformation: Converts belief masses into probabilities for decision-making
+* **Frame of Discernment**: A set of mutually exclusive and exhaustive hypotheses
+* **Belief Mass Function**: Assigns degrees of belief to subsets of the frame of discernment
+* **Dempster's Rule of Combination**: Combines evidence from multiple sources
+* **Pignistic Transformation**: Converts belief masses into probabilities for decision-making
 
 The Dempster-Shafer theory allows for representation of both uncertainty and imprecision, making it suitable for complex classification tasks.
 
