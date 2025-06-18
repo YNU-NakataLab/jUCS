@@ -1,11 +1,9 @@
 # jUCS: the UCS learning classifier systems in Julia <!-- omit in toc -->
-[![DOI](https://zenodo.org/badge/930210146.svg)](https://doi.org/10.5281/zenodo.14877438)
+
 
 The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article:
 
->Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). https://doi.org/10.1145/3717613
-
-In this article, we propose a novel class inference scheme for Learning Fuzzy-Classifier Systems (a.k.a. evolutionary fuzzy rule-based classification systems) based on the Dempster-Shafer Theory of Evidence. Our scheme enhances the handling of uncertainty in classification by calculating belief masses for each class and an *"I don't know"* state, then combining them to infer a class. When applied to the Fuzzy-UCS classifier system, our scheme improves classification performance on 30 real-world datasets compared to conventional voting- and single-winner-based class inference schemes.
+>Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). [DOI: 10.1145/3717613](https://doi.org/10.1145/3717613), [arXiv](https://doi.org/10.48550/arXiv.2506.03588)
 
 ## Table of Contents <!-- omit in toc -->
 - [Overview of jUCS](#overview-of-jucs)
