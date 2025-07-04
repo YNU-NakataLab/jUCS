@@ -5,6 +5,9 @@ The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and F
 
 >Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). [DOI: 10.1145/3717613](https://doi.org/10.1145/3717613), [arXiv](https://doi.org/10.48550/arXiv.2506.03588)
 
+An extended abstract of the article is published as our GECCO paper:
+>Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **Evidential Fuzzy Rule-Based Machine Learning to Quantify Classification Uncertainty**. In Proceedings of the Genetic and Evolutionary Computation Conference Companion (GECCO '25 Companion). ACM. [DOI: 10.1145/3712255.3734234](https://doi.org/10.1145/3712255.3734234), [TechRxiv](https://doi.org/10.36227/techrxiv.174900814.43483543/v1)
+
 ## Table of Contents <!-- omit in toc -->
 - [Overview of jUCS](#overview-of-jucs)
 - [Background: UCS, Fuzzy-UCS, and Theoretical Foundations](#background-ucs-fuzzy-ucs-and-theoretical-foundations)
