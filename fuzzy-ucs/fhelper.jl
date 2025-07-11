@@ -304,26 +304,6 @@ function conjunctive_masses(mass_all::Vector{Float64}, mass_clas::Vector{Float64
     return combined_masses
 end
 
-# {Float64, Int64, String} -> {Float64, String}
-function change_array_type(original_array::Array{Union{Float64, Int64, String}, 2})::Array{Union{Float64, Int64, String}, 2}
-    original_array = original_array[:, 1:end-1]
-    converted_array = Array{Union{Float64, Int64, String}, 2}(undef, size(original_array))
-
-    for i in 1:size(original_array, 1)
-        for j in 1:size(original_array, 2)
-            element = original_array[i, j]
-            if element isa Int
-                # Convert Int64 to Float64
-                converted_array[i, j] = float(element)
-            else
-                # Keep Float64 and String as they are
-                converted_array[i, j] = element
-            end
-        end
-    end
-    return converted_array
-end
-
 function class_inference(seed::Int64, fucs::FUCS, state::Vector{Union{Float64, Int64, String}}, inference::String)
     match_set::Vector{FClassifier} = @views generate_match_set(fucs, state, -1, true)
 
@@ -358,7 +338,7 @@ function single_winner_based_inference(seed::Int64, fucs::FUCS, match_set::Vecto
     rng = MersenneTwister(seed)
     experienced_match_set::Vector{FClassifier} = filter(clas -> clas.experience > fucs.parameters.theta_exploit, match_set)
     if isempty(experienced_match_set)
-        return rand(rng, 0:self.env.num_actions-1)
+        return rand(rng, 0:fucs.env.num_actions-1)
     else
         max_product = maximum(clas -> clas.fitness * clas.matching_degree, experienced_match_set)
         max_product_classes = filter(clas -> clas.fitness * clas.matching_degree == max_product, experienced_match_set)
