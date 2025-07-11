@@ -85,10 +85,19 @@ The Dempster-Shafer theory allows for representation of both uncertainty and imp
     Suppressor
 
 ### Installation <!-- omit in toc -->
-Once Julia is installed, you can install the required Julia packages with the following command via the command line interface.
+Once Julia is installed, you can clone the repository and navigate into the project directory:
 ```bash
-julia packages.jl
+git clone https://github.com/YNU-NakataLab/jUCS.git
+cd jUCS
 ```
+
+Before running the scripts for the first time, you need to install the necessary dependencies. The following command will automatically download the correct package versions defined in the project files. You only need to do this once.
+```bash
+# From within the jUCS directory:
+julia --project=. -e 'using Pkg; Pkg.instantiate()'
+```
+
+Once the setup is complete, you can run any of the algorithms. The `--project=.` flag ensures the correct environment is used every time.
 
 ### Usage <!-- omit in toc -->
 You can train a UCS/Fuzzy-UCS model using any tabular dataset (e.g., yourfile.csv) for classification via the command line interface. Note that:
@@ -102,27 +111,27 @@ Here are examples of how to run the models:
 
 #### Run UCS <!-- omit in toc -->
 ```bash
-julia ./ucs/main.jl --csv=yourfile.csv
+julia --project=. ./ucs/main.jl --csv=yourfile.csv
 ```
 #### Run Fuzzy-UCS<sub>VOTE</sub> <!-- omit in toc -->
 ```bash
-julia ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=vote
+julia --project=. ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=vote
 ```
 #### Run Fuzzy-UCS<sub>SWIN</sub> <!-- omit in toc -->
 ```bash
-julia ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=swin
+julia --project=. ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=swin
 ```
 #### Run Fuzzy-UCS<sub>DS</sub> <!-- omit in toc -->
 ```bash
-julia ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=ds
+julia --project=. ./fuzzy-ucs/main.jl --csv=yourfile.csv --inference=ds
 ```
 
 #### For Further Details <!-- omit in toc -->
 ```bash
-julia ./ucs/main.jl --help
+julia --project=. ./ucs/main.jl --help
 ``` 
 ```bash
-julia ./fuzzy-ucs/main.jl --help
+julia --project=. ./fuzzy-ucs/main.jl --help
 ```
 
 
@@ -328,8 +337,10 @@ This file implements an Environment struct and associated functions for handling
 * Methods for data normalization and shuffling
 * Helper functions for managing dataset properties and statistics
 
-#### `./packages.jl` <!-- omit in toc -->
-This file adds a list of required package dependencies to the project using the Pkg module.
+#### `Project.toml` & `Manifest.toml` <!-- omit in toc -->
+These files manage the project's software environment, ensuring reproducibility.
+* `Project.toml`: Lists the direct packages required for this project, such as `DataFrames` and `CSV`.
+* `Manifest.toml`: An auto-generated file that records the exact version of every single package used. This guarantees that anyone can perfectly replicate the environment and results.
 
 #### `./dataset` <!-- omit in toc -->
 This folder contains:
@@ -340,19 +351,19 @@ This folder contains:
 To reproduce the results from the article:
 #### Run UCS <!-- omit in toc -->
 ```bash
-julia ./ucs/main.jl --all=true
+julia --project=. ./ucs/main.jl --all=true
 ```
 #### Run Fuzzy-UCS<sub>VOTE</sub> <!-- omit in toc -->
 ```bash
-julia ./fuzzy-ucs/main.jl --all=true --inference=vote 
+julia --project=. ./fuzzy-ucs/main.jl --all=true --inference=vote 
 ```
 #### Run Fuzzy-UCS<sub>SWIN</sub> <!-- omit in toc -->
 ```bash
-julia ./fuzzy-ucs/main.jl --all=true --inference=swin 
+julia --project=. ./fuzzy-ucs/main.jl --all=true --inference=swin 
 ```
 #### Run Fuzzy-UCS<sub>DS</sub> <!-- omit in toc -->
 ```bash
-julia ./fuzzy-ucs/main.jl --all=true --inference=ds 
+julia --project=. ./fuzzy-ucs/main.jl --all=true --inference=ds 
 ``` 
 
 
