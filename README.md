@@ -1,9 +1,14 @@
 # jUCS: the UCS learning classifier systems in Julia <!-- omit in toc -->
 
 
-The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article:
+The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article with ACM Reproducibility Badges:
 
 >Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). [DOI: 10.1145/3717613](https://doi.org/10.1145/3717613), [arXiv](https://doi.org/10.48550/arXiv.2506.03588)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9034443e-1a66-4389-bbf1-7da85f9a9337" width="150" />
+  <img src="https://github.com/user-attachments/assets/c4eff97e-e875-4e2e-91dc-18d148993afe" width="150" />
+  <img src="https://github.com/user-attachments/assets/dec3d5f3-170e-4dc5-9849-2a4efba8c45c" width="150" />
+</p>
 
 An extended abstract of the article is published as our GECCO paper:
 >Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **Evidential Fuzzy Rule-Based Machine Learning to Quantify Classification Uncertainty**. In Proceedings of the Genetic and Evolutionary Computation Conference Companion (GECCO '25 Companion). ACM. [DOI: 10.1145/3712255.3734234](https://doi.org/10.1145/3712255.3734234), [TechRxiv](https://doi.org/10.36227/techrxiv.174900814.43483543/v1)
@@ -15,7 +20,6 @@ An extended abstract of the article is published as our GECCO paper:
 - [Reproducing Article Results](#reproducing-article-results)
 - [Copyright](#copyright)
 - [References](#references)
-- [ACM Reproducbility Badges](#acm-reproducbility-badges)
 
 ## Overview of jUCS
 jUCS implements:
@@ -418,11 +422,3 @@ month = feb
 
 <a id="9"></a>
 [9] Arthur P. Dempster. "**Upper and lower probabilities induced by a multivalued mapping**." The Annals of Mathematical Statistics 38, 2 (1967): 325–339. https://doi.org/10.1007/978-3-540-44792-4_3 [[↑]](#ref9)  
-
-## ACM Reproducbility Badges
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/9034443e-1a66-4389-bbf1-7da85f9a9337" width="150" />
-  <img src="https://github.com/user-attachments/assets/c4eff97e-e875-4e2e-91dc-18d148993afe" width="150" />
-  <img src="https://github.com/user-attachments/assets/dec3d5f3-170e-4dc5-9849-2a4efba8c45c" width="150" />
-</p>
