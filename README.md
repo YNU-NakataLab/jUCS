@@ -15,6 +15,7 @@ An extended abstract of the article is published as our GECCO paper:
 - [Reproducing Article Results](#reproducing-article-results)
 - [Copyright](#copyright)
 - [References](#references)
+- [ACM Reproducbility Badges](#acm-reproducbility-badges)
 
 ## Overview of jUCS
 jUCS implements:
@@ -417,3 +418,11 @@ month = feb
 
 <a id="9"></a>
 [9] Arthur P. Dempster. "**Upper and lower probabilities induced by a multivalued mapping**." The Annals of Mathematical Statistics 38, 2 (1967): 325–339. https://doi.org/10.1007/978-3-540-44792-4_3 [[↑]](#ref9)  
+
+## ACM Reproducbility Badges
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9034443e-1a66-4389-bbf1-7da85f9a9337" width="150" />
+  <img src="https://github.com/user-attachments/assets/c4eff97e-e875-4e2e-91dc-18d148993afe" width="150" />
+  <img src="https://github.com/user-attachments/assets/dec3d5f3-170e-4dc5-9849-2a4efba8c45c" width="150" />
+</p>
