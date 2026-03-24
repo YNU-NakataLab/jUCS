@@ -3,7 +3,7 @@
 
 The jUCS implementation includes UCS <sup><a id="ref1"></a>[[1]](#1)</sup> and Fuzzy-UCS <sup><a id="ref2"></a>[[2]](#2)</sup> codified in Julia, as described in the ACM Transactions on Evolutionary Learning and Optimization (TELO) article with ACM Reproducibility Badges:
 
->Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). [DOI: 10.1145/3717613](https://doi.org/10.1145/3717613), [arXiv](https://doi.org/10.48550/arXiv.2506.03588)
+>Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2026. **A Class Inference Scheme with Dempster–Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. 6, 1, Article 4 (March 2026), 43 pages.  [DOI: 10.1145/3717613](https://doi.org/10.1145/3717613), [arXiv](https://doi.org/10.48550/arXiv.2506.03588)
 <p align="center">
   <img src="https://github.com/user-attachments/assets/9034443e-1a66-4389-bbf1-7da85f9a9337" width="150" />
   <img src="https://github.com/user-attachments/assets/c4eff97e-e875-4e2e-91dc-18d148993afe" width="150" />
@@ -378,19 +378,25 @@ These codes will run experiments on the 30 datasets used in the main article and
 
 The copyright of jUCS belongs to the authors in the [Evolutionary Intelligence Research Group](http://www.nkt.ynu.ac.jp/en/) (Nakata Lab) at Yokohama National University, Japan. You are free to use this code for research purposes. In such cases, we kindly request that you cite the following article:
 
->Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2025. **A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. Just Accepted (February 2025). https://doi.org/10.1145/3717613
+>Hiroki Shiraishi, Hisao Ishibuchi, and Masaya Nakata. 2026. **A Class Inference Scheme with Dempster–Shafer Theory for Learning Fuzzy-Classifier Systems**. ACM Trans. Evol. Learn. Optim. 6, 1, Article 4 (March 2026), 43 pages. https://doi.org/10.1145/3717613
 
 ```bibtex
-@article{shiraishi2025class,
+@article{shiraishi2026class,
 author = {Shiraishi, Hiroki and Ishibuchi, Hisao and Nakata, Masaya},
-title = {A Class Inference Scheme With Dempster-Shafer Theory for Learning Fuzzy-Classifier Systems},
-year = {2025},
+title = {A Class Inference Scheme with Dempster–Shafer Theory for Learning Fuzzy-Classifier Systems},
+year = {2026},
+issue_date = {March 2026},
 publisher = {Association for Computing Machinery},
 address = {New York, NY, USA},
+volume = {6},
+number = {1},
+issn = {2688-299X},
+url = {https://doi.org/10.1145/3717613},
 doi = {10.1145/3717613},
-note = {Just Accepted},
 journal = {ACM Trans. Evol. Learn. Optim.},
-month = feb
+month = feb,
+articleno = {4},
+numpages = {43},
 }
 ```
 
